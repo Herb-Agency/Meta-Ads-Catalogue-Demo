@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meta Catalog Ads — Aspen Green (Demo)</title>
+<style>
+:root{--fb-blue:#1877f2;--fb-bg:#f0f2f5;--ink:#050505;--sub:#65676b;--line:#ced0d4;--card:#fff;--ag:#1f5d3a;--ig1:#feda75;--ig2:#fa7e1e;--ig3:#d62976;--ig4:#962fbf;--ig5:#4f5bd5}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--fb-bg);color:var(--ink)}
+.topbar{background:#fff;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50}
+.topbar h1{font-size:15px;font-weight:700}.topbar .pill{font-size:11px;font-weight:700;color:#fff;background:var(--ag);padding:3px 9px;border-radius:20px}
+.topbar .demo{margin-left:auto;font-size:11px;color:var(--sub)}
+.tabs{display:flex;gap:6px;background:#fff;padding:8px 18px 0;border-bottom:1px solid var(--line);position:sticky;top:43px;z-index:49}
+.tab{font-size:13px;font-weight:600;color:var(--sub);padding:8px 14px;border-radius:8px 8px 0 0;cursor:pointer;border-bottom:3px solid transparent}
+.tab.active{color:var(--ag);border-bottom-color:var(--ag)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 60px}.view{display:none}.view.active{display:block}
+.feedgrid{display:grid;grid-template-columns:680px 1fr;gap:28px;align-items:start}@media(max-width:1080px){.feedgrid{grid-template-columns:1fr}}
+.feed{display:flex;flex-direction:column;gap:20px;max-width:680px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.post-head{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--ag);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px}
+.ph-name{font-size:14px;font-weight:700}.ph-sub{font-size:12px;color:var(--sub)}
+.more{margin-left:auto;color:var(--sub);font-size:20px}
+.primary-text{padding:0 14px 12px;font-size:14px;line-height:1.45}
+.carousel{position:relative;background:#000}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 56%;scroll-snap-align:start;background:#fff;border-right:1px solid #eee}@media(max-width:560px){.slide{flex:0 0 78%}}
+.imgbox{aspect-ratio:1/1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.imgbox img{width:100%;height:100%;object-fit:contain;padding:8px}
+.scard{padding:11px 13px 13px;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.nm{font-size:13px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
+.price-row{display:flex;align-items:baseline;gap:7px}.price{font-size:15px;font-weight:800}
+.cat{font-size:11px;color:#9aa0a6}
+.shopbtn{margin-top:4px;background:#e8f3ec;color:var(--ag);border:none;font-weight:700;font-size:13px;padding:8px;border-radius:6px;cursor:pointer;width:100%}
+.arrow{position:absolute;top:38%;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);border:none;cursor:pointer;font-size:16px;font-weight:800;color:#333;box-shadow:0 1px 4px rgba(0,0,0,.3);z-index:5}.arrow.left{left:10px}.arrow.right{right:10px}
+.cta-bar{background:#f7f8fa;padding:11px 14px;display:flex;align-items:center;gap:12px;border-top:1px solid #eef0f2}
+.ctatxt{flex:1}.u{font-size:11px;color:var(--sub);text-transform:uppercase}.h{font-size:13px;font-weight:700}
+.cta-btn{background:#e4e6eb;border:none;font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;cursor:pointer}
+.post-foot{display:flex;border-top:1px solid #eef0f2}.post-foot button{flex:1;background:none;border:none;padding:10px;color:var(--sub);font-size:13px;font-weight:600;cursor:pointer}
+.notes{position:sticky;top:96px}.notecard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.notecard h3{font-size:13px;font-weight:800;margin-bottom:10px}.notecard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.notecard li{font-size:12.5px;color:#3a3b3c;line-height:1.4;padding-left:18px;position:relative}.notecard li:before{content:'\2192';position:absolute;left:0;color:var(--ag);font-weight:800}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kpi{background:#f7f8fa;border-radius:8px;padding:10px}.kpi .v{font-size:18px;font-weight:800;color:var(--ag)}.kpi .l{font-size:11px;color:var(--sub)}
+.ig{max-width:400px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ig-head{display:flex;align-items:center;gap:9px;padding:10px 12px}
+.ig-ring{width:36px;height:36px;border-radius:50%;padding:2px;background:linear-gradient(45deg,var(--ig1),var(--ig2),var(--ig3),var(--ig4),var(--ig5))}
+.ig-ring .inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--ag);font-size:14px}
+.ig-name{font-size:13px;font-weight:700}.ig-spon{font-size:11px;color:var(--sub)}.ig .slide{flex:0 0 100%}
+.ig-cta{display:flex;align-items:center;background:#fafafa;padding:12px;border-top:1px solid #eee;font-weight:700;font-size:13px;justify-content:space-between}
+.ig-acts{display:flex;gap:16px;padding:10px 12px;font-size:20px}.ig-meta{padding:0 12px 12px;font-size:13px}
+.cm{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cm-top{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cm-top h2{font-size:16px;font-weight:800}
+.cm-src{font-size:12px;color:var(--ag);background:#e8f3ec;padding:4px 10px;border-radius:20px;font-weight:600}
+.cm-stats{display:flex;gap:26px;margin-left:auto}.cm-stats div{font-size:12px;color:var(--sub)}.cm-stats b{display:block;font-size:18px;color:var(--ink);font-weight:800}
+.cm-search{padding:12px 20px;border-bottom:1px solid var(--line)}.cm-search input{width:100%;max-width:320px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}th{text-align:left;padding:11px 16px;background:#f7f8fa;color:var(--sub);font-weight:700;font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--line)}
+td{padding:11px 16px;border-bottom:1px solid #eef0f2;vertical-align:middle}
+.cm-prod{display:flex;align-items:center;gap:11px}.cm-thumb{width:46px;height:46px;border-radius:6px;object-fit:contain;background:#f6f6f6}
+.cm-pname{font-weight:600}.cm-sku{font-size:11px;color:var(--sub)}.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#e3f9e5;color:#1a7f37}
+.legend{font-size:11px;color:var(--sub);background:#eaf5ee;border:1px solid #bfe0cb;border-radius:8px;padding:10px 14px;margin-bottom:18px;line-height:1.5}
+.tablewrap{overflow-x:auto}
+</style></head><body>
+<div class="topbar"><span class="pill">Meta Ads</span><h1>Catalog Ads Preview — Aspen Green</h1><span class="demo">Interactive demo · real catalog</span></div>
+<div class="tabs"><div class="tab active" data-v="feed">📱 Facebook Feed</div><div class="tab" data-v="ig">📸 Instagram</div><div class="tab" data-v="catalog">🗂️ Catalog Manager</div></div>
+<div class="wrap">
+<div class="legend">Built from the live Aspen Green catalog — real product names, prices, categories and product photos. Mirrors how Meta Advantage+ Catalog Ads auto-assemble carousel creative from a product feed. Click arrows to scroll; switch tabs for placements and the catalog feed.</div>
+<div class="view active" id="feed"><div class="feedgrid"><div class="feed">
+<div class="post"><div class="post-head"><div class="avatar">A</div><div><div class="ph-name">Aspen Green</div><div class="ph-sub">Sponsored · 🌐</div></div><div class="more">⋯</div></div>
+<div class="primary-text">Organic, full-spectrum wellness. 🌿 USDA-certified CBD oils, gummies, THC drinks &amp; topicals — crafted for real results. Shop the lineup.</div>
+<div class="carousel"><button class="arrow left" onclick="sc('c1',-1)">‹</button><button class="arrow right" onclick="sc('c1',1)">›</button><div class="track" id="c1"></div></div>
+<div class="cta-bar"><div class="ctatxt"><div class="u">aspengreen.com</div><div class="h">Free shipping available</div></div><button class="cta-btn">Shop now</button></div>
+<div class="post-foot"><button>👍 Like</button><button>💬 Comment</button><button>↪ Share</button></div></div>
+<div class="post"><div class="post-head"><div class="avatar">A</div><div><div class="ph-name">Aspen Green</div><div class="ph-sub">Sponsored · 🌐</div></div><div class="more">⋯</div></div>
+<div class="primary-text">🍹 New: THC-infused sparkling drinks. Award-winning flavor, precise dosing. Explore the full beverage range.</div>
+<div class="carousel"><button class="arrow left" onclick="sc('c2',-1)">‹</button><button class="arrow right" onclick="sc('c2',1)">›</button><div class="track" id="c2"></div></div>
+<div class="cta-bar"><div class="ctatxt"><div class="u">aspengreen.com</div><div class="h">Shop beverages</div></div><button class="cta-btn">Shop now</button></div>
+<div class="post-foot"><button>👍 Like</button><button>💬 Comment</button><button>↪ Share</button></div></div>
+</div>
+<div class="notes"><div class="notecard"><h3>Why this works as a catalog ad</h3><ul>
+<li>Creative auto-generated from the product feed — no manual design per SKU.</li>
+<li>Price, category &amp; product images pull live from the catalog and update automatically.</li>
+<li>Meta shows each shopper the products they're most likely to buy (Advantage+).</li>
+<li>One ad, the whole catalog — beverages, oils, gummies &amp; topicals, no new creative.</li></ul></div>
+<div class="notecard"><h3>Illustrative performance</h3><div class="kpis"><div class="kpi"><div class="v">4.2x</div><div class="l">Sample ROAS</div></div><div class="kpi"><div class="v">$1.10</div><div class="l">Sample CPC</div></div><div class="kpi"><div class="v">2.9%</div><div class="l">Sample CTR</div></div><div class="kpi"><div class="v">12</div><div class="l">SKUs featured</div></div></div><p style="font-size:11px;color:var(--sub);margin-top:10px">Figures are placeholders for illustration.</p></div></div></div></div>
+<div class="view" id="ig"><div class="ig"><div class="ig-head"><div class="ig-ring"><div class="inner">A</div></div><div><div class="ig-name">aspengreen</div><div class="ig-spon">Sponsored</div></div><div class="more" style="margin-left:auto">⋯</div></div>
+<div class="carousel"><button class="arrow left" onclick="sc('ig1',-1)">‹</button><button class="arrow right" onclick="sc('ig1',1)">›</button><div class="track" id="ig1"></div></div>
+<div class="ig-cta"><span>Shop now</span><span style="color:var(--sub)">›</span></div><div class="ig-acts"><span>♡</span><span>💬</span><span>➤</span></div>
+<div class="ig-meta"><b>aspengreen</b> Organic full-spectrum wellness 🌿 Tap to shop →</div></div></div>
+<div class="view" id="catalog"><div class="cm"><div class="cm-top"><h2>Catalog: Aspen Green</h2><span class="cm-src">Source: Website data feed</span>
+<div class="cm-stats"><div><b id="cc">0</b>products shown</div><div><b>USD</b>currency</div><div><b id="ci">0</b>in stock</div></div></div>
+<div class="cm-search"><input id="cs" placeholder="🔍 Search products…" oninput="fcm()"></div>
+<div class="tablewrap"><table><thead><tr><th>Product</th><th>Availability</th><th>Price</th><th>Category</th><th>SKU</th></tr></thead><tbody id="cb"></tbody></table></div></div></div>
+</div>
+<script>
+const IMG="https://cdn.shopify.com/s/files/1/0786/7216/7147/files/";
+const products=[
+ {n:"Concord Transfusion THC Drink – 5mg",cat:"Beverages",p:37.99,sku:"C-NC-CT-5MG-8PK",img:IMG+"aspen-green-concord-transfusion-5mg-drink-front-3d-arch.webp?width=500"},
+ {n:"Amalfi Spritz THC Drink – 10mg",cat:"Beverages",p:49.99,sku:"C-NC-AS-10MG-8PK",img:IMG+"aspen-green-amalfi-spritz-10mg-drink-front-3d-arch.webp?width=500"},
+ {n:"Concord Transfusion THC Drink – 10mg",cat:"Beverages",p:49.99,sku:"C-NC-CT-10MG-8PK",img:IMG+"aspen-green-concord-transfusion-10mg-drink-front-3d-arch.webp?width=500"},
+ {n:"Calm Organic Full Spectrum CBD Gummies (3 ct)",cat:"Gummies",p:11.99,sku:"3P-CM-LM-1",img:IMG+"aspen-green-calm-cbd-gummies.webp?width=500"},
+ {n:"Relief Organic Full Spectrum CBD Gummies (3 ct)",cat:"Gummies",p:11.99,sku:"3P-RL-CH-1",img:IMG+"aspen-green-relief-cbd-gummies.webp?width=500"},
+ {n:"Rest Organic Full Spectrum CBD Gummies (3 ct)",cat:"Gummies",p:11.99,sku:"3P-RT-BR-1",img:IMG+"aspen-green-rest-cbd-gummies.webp?width=500"},
+ {n:"Extra Organic Full Spectrum CBD Oil – Mint",cat:"Oils",p:144.99,sku:"OG-EX-MT-1",img:IMG+"aspen-green-extra-strength-cbd-oil-mint.webp?width=500"},
+ {n:"Extra Organic Full Spectrum CBD Oil – Citrus",cat:"Oils",p:144.99,sku:"OG-EX-CT-1",img:IMG+"aspen-green-extra-strength-cbd-oil-citrus.webp?width=500"},
+ {n:"Extra Organic Full Spectrum CBD Oil – Unflavored",cat:"Oils",p:144.99,sku:"OG-EX-UF-1",img:IMG+"aspen-green-extra-strength-cbd-oil-unflavored.webp?width=500"},
+ {n:"Rouse Organic Full Spectrum CBD Intimacy Cream",cat:"Topicals",p:54.99,sku:"OG-RS-IC-1",img:IMG+"aspen-green-rouse-intimacy-cream.webp?width=500"},
+ {n:"Relief Full Spectrum CBD Balm",cat:"Topicals",p:59.99,sku:"OG-RL-BM-1",img:IMG+"aspen-green-relief-cbd-balm.webp?width=500"},
+ {n:"Pet Organic Full Spectrum CBD Oil – Bacon",cat:"Pet Products",p:64.99,sku:"OG-PT-BC-1",img:IMG+"aspen-green-pet-cbd-oil-bacon.webp?width=500"}
+];
+const grad=["#1f5d3a,#3fa06a","#2e7d52,#7cc99b","#16493f,#2f8f7e","#3a7d44,#9bd1a0"];
+function fb(i,p){return '<div style="width:100%;height:100%;background:linear-gradient(135deg,'+grad[i%grad.length]+');display:flex;align-items:center;justify-content:center;text-align:center;padding:16px"><span style="color:#fff;font-weight:800;font-size:15px;line-height:1.25">'+p.n.split('–')[0]+'</span></div>';}
+function tile(p,i){return '<img src="'+p.img+'" referrerpolicy="no-referrer" alt="" onerror="this.parentNode.innerHTML=window.__fb('+i+')">';}
+window.__fb=i=>fb(i,products[i]);
+function slide(p,i){return '<div class="slide"><div class="imgbox">'+tile(p,i)+'</div><div class="scard"><div class="nm">'+p.n+'</div><div class="price-row"><span class="price">$'+p.p.toFixed(2)+'</span></div><div class="cat">'+p.cat+'</div><button class="shopbtn">Shop now</button></div></div>';}
+const idx=p=>products.indexOf(p);
+const best=products.slice(0,8);
+const bev=products.filter(p=>p.cat==='Beverages');
+document.getElementById('c1').innerHTML=best.map(p=>slide(p,idx(p))).join('');
+document.getElementById('c2').innerHTML=bev.map(p=>slide(p,idx(p))).join('');
+document.getElementById('ig1').innerHTML=best.map(p=>slide(p,idx(p))).join('');
+function sc(id,d){const t=document.getElementById(id);const w=t.querySelector('.slide').offsetWidth+1;t.scrollBy({left:d*w,behavior:'smooth'});}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.v).classList.add('active');});
+function thumb(p,i){return '<img class="cm-thumb" src="'+p.img+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=&quot;cm-thumb&quot; style=&quot;background:linear-gradient(135deg,'+grad[i%grad.length]+')&quot;></div>\'">';}
+function row(p,i){return '<tr><td><div class="cm-prod">'+thumb(p,i)+'<div><div class="cm-pname">'+p.n+'</div><div class="cm-sku">SKU: '+p.sku+'</div></div></div></td><td><span class="tag">In stock</span></td><td><b>$'+p.p.toFixed(2)+'</b></td><td>'+p.cat+'</td><td class="cm-sku">'+p.sku+'</td></tr>';}
+function rcm(l){document.getElementById('cb').innerHTML=l.map(p=>row(p,idx(p))).join('');document.getElementById('cc').textContent=l.length;document.getElementById('ci').textContent=l.length;}
+function fcm(){const q=document.getElementById('cs').value.toLowerCase();rcm(products.filter(p=>p.n.toLowerCase().includes(q)));}
+rcm(products);
+</script></body></html>
